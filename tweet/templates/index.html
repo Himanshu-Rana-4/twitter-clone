@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 70vh;">
+    <!-- Logo / Brand -->
+    <h1 class="display-3 mb-4" style="color:#1da1f2;">TweetBar</h1>
+
+    <!-- Greeting -->
+    {% if user.is_authenticated %}
+        <h2 class="mb-4">Welcome {{ user.username }}</h2>
+    {% else %}
+        <h2 class="mb-4">Welcome to TweetBar</h2>
+    {% endif %}
+
+    <!-- Call-to-action buttons -->
+    <div>
+        {% if not user.is_authenticated %}
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg mx-2">Get Started</a>
+            <a href="{% url 'login' %}" class="btn btn-success btn-lg mx-2">Login</a>
+        {% else %}
+            <a href="{% url 'tweet_list' %}" class="btn btn-info btn-lg mx-2">Go to Tweets</a>
+        {% endif %}
+    </div>
+
+    <!-- Optional tagline -->
+    <p class="mt-5 fs-5 text-secondary">Connect with your friends, share thoughts, and explore the world of tweets!</p>
+</div>
+{% endblock %}
